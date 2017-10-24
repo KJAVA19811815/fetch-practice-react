@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Pokemon from "./components/Pokemon";
+import NewPokemon from "./components/NewPokemon";
 
 class App extends Component {
   renderPokemon() {
@@ -38,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NewPokemon />
         <Pokemon pokemon={this.state.pokemon} />
       </div>
     );

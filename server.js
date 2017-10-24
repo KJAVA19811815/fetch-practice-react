@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
@@ -16,21 +17,22 @@ const data = [
     id: 2,
     name: "charizard",
     type: "fire"
-  },
-  {
-    id: 3,
-    name: "mew",
-    type: "pyschic"
-  },
-  {
-    id: 4,
-    name: "electrabuzz",
-    type: "electric"
   }
 ];
 
+let nextId = 3;
+
 app.get("/", (req, res) => {
   res.send(JSON.stringify(data));
+});
+
+app.post("/", (req, res) => {
+  const newPokemon = {
+    id: nextId++,
+    name: req.body.name,
+    type: req.body.type
+  };
+  data.push(newPokemon);
 });
 
 app.listen(8080, () => {
